@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Roommate Site</title>
+</head>
+<body>
+<center><h1><b>WELCOME</b></h1></center>
+<center><h1><b>ROOMMATE RECOMMENDER SYSTEM USING MACHINE LEARINING</b></h1></center>
+<center><h2>Hello! Answer the below questions</h2><center>
+<div style="color:black">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h3>Choose your Department?</h3><br>
+            <select name="department" id="one" required="required">
+                <option value="1">CSE</option>
+                <option value="2">ECE</option>
+                <option value="3">EEE</option>
+                <option value="4">MECH</option>
+                <option value="5">CIVIL</option>
+            </select>
+            <h3>Choose Indoor Game that You play often</h3><br>
+            <select name="indoor" id="two" required="required">
+                <option value="1">CHESS</option>
+                <option value="2">CARROMBOARD</option>
+                <option value="3">TABLE TENNIS</option>
+                <option value="4">MOBILE OR PC GAMES</option>
+                <option value="5">OTHERS</option>
+            </select>
+            <h3>Choose Outdoor Game that You play often</h3><br>
+            <select name="outdoor" id="three" required="required">
+                <option value="1">CRICKET</option>
+                <option value="2">KABADDI</option>
+                <option value="3">FOOTBALL</option>
+                <option value="4">VOLLEYBALL</option>
+                <option value="5">OTHERS</option>
+            </select>
+            <h3>what time do you generally wake up?</h3><br>
+            <select name="wake_up" id="four" required="required">
+                <option value="1">Before 5:00 AM</option>
+                <option value="2">Between 5:00 to 6:00 AM</option>
+                <option value="3">Between 6:00 to 7:00 AM</option>
+                <option value="4">Between 7:00 to 8:00 AM</option>
+                <option value="5">After 8:00 AM</option>
+            </select>
+	    <h3>what time do you go to sleep at night?</h3><br>
+            <select name="sleep_time" id="five" required="required">
+                <option value="1">Before 9:00 PM</option>
+                <option value="2">Between 9:00 to 10:00 PM</option>
+                <option value="3">Between 10:00 to 11:00 PM</option>
+                <option value="4">Between 11:00 to 12:00 PM</option>
+                <option value="5">After 12:00 PM</option>
+            </select>
+<h2>Rate Yourself from 1-5</h2>
+<center><table >
+<tr><th>Rating</th><th>Meaning</th></tr>
+<tr><td>1</td><td>Strongly Negative</td></tr>
+<tr><td>2</td><td>Negative</td></tr>
+<tr><td>3</td><td>Neutral</td></tr>
+<tr><td>4</td><td>Positive</td></tr>
+<tr><td>5</td><td>Strongly Positive</td></tr>
+</table></ center>
+            <h3>Rate yourself as a Introvert</h3><br>
+            <select name="introvert" id="six" required="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <h3>Rate yourself as a EXTROVERT</h3>
+            <select name="extrovert" id="seven" required="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+	    <h3>Rate yorself as a CONSERVATIVE Person</h3>
+            <select name="conservative" id="eight" required="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+	   <h3>How neat to messy are you ?</h3>
+            <select name="neat" id="nine" required="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>          
+            <h3>What type of food you like to eat mostly?</h3>
+            <select name="Food" id="ten" required="required">
+                <option value="1">veg</option>
+                <option value="2">Non-Veg</option>
+                <option value="3">Both Veg and Non Veg</option>
+                <option value="4">Fast Foods</option>
+                <option value="5">All the above</option>
+            </select>
+            <h3>What is your Mother tongue ?</h3>
+            <select name="language" id="eleven" required="required">
+                <option value="1">Hindi</option>
+                <option value="2">Telugu</option>
+                <option value="3">Tamil</option>
+                <option value="4">Marathi</option>
+                <option value="5">other</option>
+            </select>            
+            <br><br><button id="sub" type="submit ">submit</button>
+            <br>
+        </form>
+        <br><br><h1 style="border: 4px solid black;" >{{ prediction_text }}<h1>
+    </div>
+    <style>
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+        body{
+            background-color:#FFCC99;
+	    text-align:center;
+	    padding:0px;
+               }
+        table{
+              width: 250px;}
+        table,th,td{
+              border: 2px solid black;}
+        th,td {
+              text-align: center;
+              font-size: 18px;
+              font-weight:bold;}                  
+        #sub {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }       
+        #sub:hover {background-color: darkcyan;}      
+        #one,#two,#three,#four,#five,#six,#seven,#eight,#nine,#ten,#eleven {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        #one:hover {background-color: darkcyan;}
+        #two:hover { background-color: darkcyan;}
+        #three:hover{ background-color: darkcyan;}
+        #four:hover { background-color: darkcyan;}
+        #five:hover { background-color: darkcyan;}
+        #six:hover  { background-color: darkcyan;}
+        #seven:hover{ background-color: darkcyan;}
+        #eight:hover{ background-color: darkcyan;}
+        #nine:hover { background-color: darkcyan;}
+        #ten:hover { background-color: darkcyan;}
+        #eleven:hover { background-color: darkcyan;}       
+    </style>
+</body>
+</html>
